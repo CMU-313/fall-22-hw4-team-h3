@@ -10,7 +10,7 @@ Please consult the [homework assignment](https://cmu-313.github.io//assignments/
 
 #### Prereqs
 
-- The version of Python you and your team will be using. It's currently set to version 3.7
+- The version of Python you and your team will be using (version greater than 3.8)
 - pip package manager is updated to latest version
 - For additional resources, check out [this link](https://pipenv-fork.readthedocs.io/en/latest/install.html#installing-pipenv)
 
