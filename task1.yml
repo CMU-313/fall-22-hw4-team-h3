@@ -1,0 +1,74 @@
+openapi: 3.0.0
+info:
+  title: Teedy API Microservice
+  description: This API will help Teedy classify which students are more likely to be high-quality.
+  version: 0.1.9
+paths:
+  /predict:
+    post:
+      parameters:
+        - name: G1
+          in: query
+          description: First period grade (numeric from 0 to 20)
+          required: true
+          explode: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 0
+            maximum: 20
+        - name: G2
+          in: query
+          description: Second period grade (numeric from 0 to 20)
+          required: true
+          explode: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 0
+            maximum: 20
+        - name: absences
+          in: query
+          description: Number of school absences (numeric from 0 to 93)
+          required: true
+          explode: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 0
+            maximum: 93
+        - name: studytime
+          in: query
+          description: Weekly study time (numeric 1 -> <2 hours, 2 -> 2 to 5 hours, 3 -> 5 to 10 hours, or 4 -> >10 hours)
+          required: true
+          explode: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+            maximum: 4
+        - name: failures
+          in: query
+          description: Number of past class failures (numeric n if 1<=n<3, else 4)
+          required: true
+          explode: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+            maximum: 4
+      responses:
+        '200':
+          description: Success Message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: This student is predicted to be a high-quality student
+        '400':
+          description: Invalid Input
+        default:
+          description: Unexpected Error
