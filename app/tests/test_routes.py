@@ -60,3 +60,16 @@ def test_predict_route():
     response = client.get(wrongURL)
     assert response.status_code == 400
     assert response.get_data() == b'Invalid Input'
+
+def test_metrics_route():
+    app = Flask(__name__)
+    configure_routes(app)
+    client = app.test_client()
+    url = '/metrics'
+
+    response = client.get(url)
+
+    assert response.status_code == 200
+    assert response.get_data()
+    assert float(response.get_data()) > 0
+    assert float(response.get_data()) < 1
