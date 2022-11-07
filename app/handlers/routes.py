@@ -24,16 +24,14 @@ def configure_routes(app):
         absences = request.args.get('absences')
         studytime = request.args.get('studytime')
         failures = request.args.get('failures')
-        
-        #health = request.args.get('health')
 
         data = [[G1], [G2], [absences], [studytime], [failures]]
 
         query_df = pd.DataFrame({
-            'G1': pd.Series(age),
-            'G2': pd.Series(health),
-            'absences': pd.Series(absences)
-            'studytime': pd.Series(studytime)
+            'G1': pd.Series(G1),
+            'G2': pd.Series(G2),
+            'absences': pd.Series(absences),
+            'studytime': pd.Series(studytime),
             'failures': pd.Series(failures)
         })
         
