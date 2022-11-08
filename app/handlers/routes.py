@@ -18,12 +18,28 @@ def configure_routes(app):
 
     @app.route('/predict')
     def predict():
+
         #use entries from the query string here but could also use json
         G1 = request.args.get('G1')
         G2 = request.args.get('G2')
         absences = request.args.get('absences')
         studytime = request.args.get('studytime')
         failures = request.args.get('failures')
+
+    
+
+        if not G1 or not G2 or not absences or not studytime or not failures:
+            return 'Missing Input', 400
+        if((int(G1) < 0) or (int(G1) > 20)):
+            return 'Invalid Input', 400
+        if((int(G2) < 0) or (int(G2) > 20)):
+            return 'Invalid Input', 400
+        if((int(absences) < 0) or (int(absences) > 93)):
+            return 'Invalid Input', 400
+        if((int(studytime) < 0) or (int(studytime) > 4)):
+            return 'Invalid Input', 400
+        if((int(failures) < 0) or (int(failures) > 4)):
+            return 'Invalid Input', 400
 
         data = [[G1], [G2], [absences], [studytime], [failures]]
 
@@ -35,9 +51,10 @@ def configure_routes(app):
             'failures': pd.Series(failures)
         })
         
-        query = pd.get_dummies(query_df)
-        prediction = clf.predict(query)
-        return jsonify(np.asscalar(prediction))
+        #query = pd.get_dummies(query_df)
+
+        prediction = clf.predict(query_df)
+        return jsonify(np.ndarray.item(prediction))
 
     @app.route('/metrics')
     def metrics():
