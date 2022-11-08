@@ -1,3 +1,17 @@
+# Implementation
+In our implementation, we decided to train our model with the RandomForestClassifier in the sklearn package. Our goal was to reach a greater f1 score than the default baseline model that was provided to us, as that is a metric that determines the accuracy of a model. In order to reach a greater f1 score, we selected five features that we wanted to factor in, rather than just three.
+
+Here are our chosen features listed below:
+- G1: first period grade (numeric from 0 to 20)
+- G2: second period grade (numeric from 0 to 20)
+- absences: number of school absences (numeric from 0 to 93)
+- studytime: weekly study time (numeric; 1 represents < 2 hours, 2 represents 2 to 5 hours, 3 represents 5 to 10 hours, and 4 represents > 10 hours)
+- failures: number of past class failures (numeric; n if 1 <= n < 3, else 4)
+
+Like in the default model, we used our model to predict whether a student was "qualified" or not, based on their G3 score. We continued to define a quality student as one who achieves a final grade (G3) of 15 or greater.
+
+Finally, we were able to achieve an f1 score of 0.9932 which was significantly better than the default model's f1 score of 0.5429.
+
 # HW4 Starter Code and Instructions
 
 Please consult the [homework assignment](https://cmu-313.github.io//assignments/hw4) for additional context and instructions for this code.
