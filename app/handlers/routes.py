@@ -55,8 +55,3 @@ def configure_routes(app):
 
         prediction = clf.predict(query_df)
         return jsonify(np.ndarray.item(prediction))
-
-    @app.route('/metrics')
-    def metrics():
-        # TO BE IMPLEMENTED
-        return "to be implemented"

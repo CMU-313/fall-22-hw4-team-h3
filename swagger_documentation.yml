@@ -72,15 +72,4 @@ paths:
           description: Invalid Input
         default:
           description: Unexpected Error
-  /metrics:
-    get:
-      description: get the percent accuracy of the machine learning model
-      responses:
-        "200":
-          description: Success Message
-          content:
-            application/json:
-              schema:
-                type: number
-        default:
-          description: Unexpected Error
+  
